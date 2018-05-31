@@ -1,19 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+const GH_URL = "https://api.github.com/users/mdshepard"
+
 class App extends Component {
+  state = {
+    user: {},
+    active: false,
+  }
+
+  handleClick = () => {
+    fetch(GH_URL)
+    .then(response => response.json())
+    //here we apply the data from the fetch to the user in the state object, and we set the value of active to the opposite of it's current value.
+    .then(data => {this.setState({user: data, active: !this.state.active})})
+  }
+  
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+    <div>
+      <button onClick = {this.handleClick}>
+        this is a button
+      </button>
+      { this.state.active ?
+      <React.Fragment>
+      <div>
+        {this.state.user.login}
       </div>
+      <div>
+      <img src={this.state.user.avatar_url}/>
+      </div>
+      <div>
+        {"followers:" + this.state.user.followers + " ...womp womp"}
+      </div>
+      <div>
+        {"public repos:" + this.state.user.public_repos}
+      </div>
+      </React.Fragment>
+      : null
+      }
+    </div>
     );
   }
 }
