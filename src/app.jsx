@@ -26,10 +26,10 @@ class App extends Component {
       <div id="handle">
         {this.state.user.login}
       </div>
-      <div id="dangOlAvatarMan">
-      <img src={this.state.user.avatar_url}/>
-      </div>
-        <div>
+        <div id="dangOlAvatarMan">
+        <img src={this.state.user.avatar_url}/>
+        </div>
+        <div id="infoContainer">
           <div id="followers">
           {"followers:" + this.state.user.followers + " ...womp womp"}
           </div>
