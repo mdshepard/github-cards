@@ -36,6 +36,7 @@ class App extends Component {
           <div id="publicRepos">
           {"public repos:" + this.state.user.public_repos}
           </div>
+        </div>
       </React.Fragment>
       : null
       }
